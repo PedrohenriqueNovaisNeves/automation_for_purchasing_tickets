@@ -24,5 +24,5 @@ public class UserModel {
     private String cpfUser;
     private String email;
     @Column(nullable = false)
-    private String senha;
+    private String password;
 }
