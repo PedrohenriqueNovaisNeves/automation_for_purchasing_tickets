@@ -61,4 +61,18 @@ public class UserService {
 
         return userRepository.save(newUser);
     }
+
+    public void deleteAllUser(){
+        userRepository.deleteAll();
+    }
+
+    public void deleteOneUser(UUID id){
+        Optional<UserModel> user = userRepository.findById(id);
+
+        if(user.isEmpty()){
+            throw new RuntimeException("User not found");
+        }
+
+        userRepository.delete(user.get());
+    }
 }
