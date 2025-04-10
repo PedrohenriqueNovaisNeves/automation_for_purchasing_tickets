@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/automation")
 public class SeleniumController {
 
-    @Autowired
-    public final SeleniumService seleniumService;
-
-    public SeleniumController(SeleniumService seleniumService){
-        this.seleniumService = seleniumService;
-    }
-
-    @GetMapping("/testar-selenium")
-    public String testar() {
-        seleniumService.testarSelenium();
-        return "Teste concluído!";
-    }
+//    @Autowired
+//    public final SeleniumService seleniumService;
+//
+//    public SeleniumController(SeleniumService seleniumService){
+//        this.seleniumService = seleniumService;
+//    }
+//
+//    @GetMapping("/testar-selenium")
+//    public String testar() {
+//        seleniumService.testarSelenium();
+//        return "Teste concluído!";
+//    }
 }

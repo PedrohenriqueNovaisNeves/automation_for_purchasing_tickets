@@ -8,17 +8,17 @@ import org.springframework.stereotype.Service;
 public class SeleniumService {
 
 
-    private final WebDriver driver;
-
-    public SeleniumService(WebDriver driver){
-        this.driver = driver;
-    }
-
-    public void testarSelenium() {
-        driver.get("https://www.youtube.com");
-        System.out.println("Título da página: " + driver.getTitle());
-
-        // Fecha o navegador (importante se estiver rodando múltiplas vezes)
-        //driver.quit();
-    }
+//    private final WebDriver driver;
+//
+//    public SeleniumService(WebDriver driver){
+//        this.driver = driver;
+//    }
+//
+//    public void testarSelenium() {
+//        driver.get("https://www.youtube.com");
+//        System.out.println("Título da página: " + driver.getTitle());
+//
+//        // Fecha o navegador (importante se estiver rodando múltiplas vezes)
+//        //driver.quit();
+//    }
 }
