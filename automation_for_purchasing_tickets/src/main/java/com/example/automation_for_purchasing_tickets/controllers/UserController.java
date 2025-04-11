@@ -4,6 +4,7 @@ import com.example.automation_for_purchasing_tickets.dtos.UserRecord;
 import com.example.automation_for_purchasing_tickets.models.UserModel;
 import com.example.automation_for_purchasing_tickets.services.UserService;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,16 @@ public class UserController {
     @GetMapping("/listOneUser/{id}")
     public ResponseEntity<Object> listOneUser(@PathVariable(value = "id") UUID id){
         return ResponseEntity.status(HttpStatus.OK).body(userService.listOneUser(id));
+    }
+
+    @PutMapping("/updateUser/{id}")
+    public ResponseEntity<Object> updateUser(@PathVariable(value = "id")UUID id, @Valid @RequestBody UserRecord userRecord){
+        var user = new UserModel();
+        BeanUtils.copyProperties(userRecord, user);
+
+        userService.updateUser(id, user);
+
+        return ResponseEntity.status(HttpStatus.OK).body("User updated with successfully");
     }
 
 
