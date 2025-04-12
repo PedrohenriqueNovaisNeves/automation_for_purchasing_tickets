@@ -59,5 +59,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body("Password the user updating with successfully");
     }
 
+    @DeleteMapping("/deleteOneUser/{id}")
+    public ResponseEntity<Object> deleteUser(@PathVariable(value = "id")UUID id){
+        userService.deleteOneUser(id);
+        return ResponseEntity.status(HttpStatus.OK).body("User deleted with successfully");
+    }
 
 }
