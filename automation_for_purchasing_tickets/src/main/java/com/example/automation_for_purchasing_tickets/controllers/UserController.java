@@ -53,5 +53,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body("User updated with successfully");
     }
 
+    @PutMapping("/updatePasswordUser/{id}")
+    public ResponseEntity<Object> updatePasswordUser(@PathVariable(value = "id")UUID id, @Valid @RequestBody UserModel userModel){
+        userService.updatePasswordtheUser(id, userModel.getPassword());
+        return ResponseEntity.status(HttpStatus.OK).body("Password the user updating with successfully");
+    }
+
 
 }
