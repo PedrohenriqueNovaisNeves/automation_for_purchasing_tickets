@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -65,4 +66,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body("User deleted with successfully");
     }
 
+    @DeleteMapping("/deleteAllUser")
+    public ResponseEntity<Object> deleteAllUser(){
+        userService.deleteAllUser();
+        return ResponseEntity.status(HttpStatus.OK).body("All users deleted with successfully");
+    }
 }
