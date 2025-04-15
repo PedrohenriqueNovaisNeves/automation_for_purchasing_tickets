@@ -29,7 +29,8 @@ public class UserService {
     }
 
     public Object listOneUser(UUID id){
-        return userRepository.findById(id);
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public Object updateUser(UUID id, UserModel userModel){
