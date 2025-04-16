@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/ticket")
 public class TicketController {
@@ -27,4 +30,14 @@ public class TicketController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Ticket registered with successfully");
     }
 
+    @GetMapping("/listAllTickets")
+    public ResponseEntity<List<TicketsModel>> listAllTickets(){
+        List<TicketsModel> listTickets = ticketService.listAllTickets();
+        return ResponseEntity.status(HttpStatus.OK).body(listTickets);
+    }
+
+    @GetMapping("/listOneTicket/{id}")
+    public ResponseEntity<Object> listOneTicket(@PathVariable(value = "id")UUID id){
+        return ResponseEntity.status(HttpStatus.OK).body(ticketService.listOneTicket(id));
+    }
 }
