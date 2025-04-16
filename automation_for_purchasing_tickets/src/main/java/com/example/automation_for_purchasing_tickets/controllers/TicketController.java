@@ -50,4 +50,12 @@ public class TicketController {
         ticketService.updateTicket(id, ticket);
         return ResponseEntity.status(HttpStatus.OK).body("Ticket updated with successfully");
     }
+
+    @DeleteMapping("/deleteAllTickets")
+    public ResponseEntity<Object> deleteAllTickets(){
+        ticketService.deleteAllTickets();
+        return ResponseEntity.status(HttpStatus.OK).body("Tickets delete with successfully");
+    }
+
+
 }
