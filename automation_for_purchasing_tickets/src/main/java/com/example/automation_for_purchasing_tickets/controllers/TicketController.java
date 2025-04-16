@@ -57,5 +57,9 @@ public class TicketController {
         return ResponseEntity.status(HttpStatus.OK).body("Tickets delete with successfully");
     }
 
-
+    @DeleteMapping("/deleteOneTicket/{id}")
+    public ResponseEntity<Object> deleteOneTicket(@PathVariable(value = "id")UUID id){
+        ticketService.deleteOneTicket(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Ticket deleted!!");
+    }
 }
