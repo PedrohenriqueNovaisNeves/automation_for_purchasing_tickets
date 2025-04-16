@@ -4,6 +4,7 @@ import com.example.automation_for_purchasing_tickets.dtos.TicketRecord;
 import com.example.automation_for_purchasing_tickets.models.TicketsModel;
 import com.example.automation_for_purchasing_tickets.services.TicketService;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,14 @@ public class TicketController {
     @GetMapping("/listOneTicket/{id}")
     public ResponseEntity<Object> listOneTicket(@PathVariable(value = "id")UUID id){
         return ResponseEntity.status(HttpStatus.OK).body(ticketService.listOneTicket(id));
+    }
+
+    @PutMapping("/updateTicket/{id}")
+    public ResponseEntity<Object> updateTicket(@PathVariable(value = "id")UUID id, @Valid @RequestBody TicketRecord ticketRecord){
+        var ticket = new TicketsModel();
+        BeanUtils.copyProperties(ticketRecord, ticket);
+
+        ticketService.updateTicket(id, ticket);
+        return ResponseEntity.status(HttpStatus.OK).body("Ticket updated with successfully");
     }
 }
