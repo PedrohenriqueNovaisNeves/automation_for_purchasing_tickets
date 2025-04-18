@@ -53,4 +53,16 @@ public class BuyController {
 
         return ResponseEntity.status(HttpStatus.OK).body("register purchasing updated with successfully");
     }
+
+    @DeleteMapping("/deleteOnePurchasing/{id}")
+    public ResponseEntity<Object> deleteOnePurchase(@PathVariable(value = "id")UUID id){
+        buyService.deleteOnePurchase(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Register purchasing delete with successfully");
+    }
+
+    @DeleteMapping("/deleteAllPurchasings")
+    public ResponseEntity<Object> deleteAllPurchasings(){
+        buyService.deleteAllPurchases();
+        return ResponseEntity.status(HttpStatus.OK).body("All purchases delete");
+    }
 }
