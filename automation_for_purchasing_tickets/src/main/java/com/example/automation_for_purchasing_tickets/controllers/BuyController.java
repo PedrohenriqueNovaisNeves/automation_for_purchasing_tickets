@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/buy")
 public class BuyController {
@@ -28,4 +31,17 @@ public class BuyController {
         buyService.savePurchase(buyRecord);
         return ResponseEntity.status(HttpStatus.CREATED).body("Purchase registered with successfully");
     }
+
+    @GetMapping("/listAllPurchases")
+    public ResponseEntity<List<BuyModel>> listAllPurchasing(){
+        List<BuyModel> purchases = buyService.listAllPurchases();
+        return ResponseEntity.status(HttpStatus.OK).body(purchases);
+    }
+
+    @GetMapping("/listOnePurchasing/{id}")
+    public ResponseEntity<Object> listOnePurchasing(@PathVariable(value = "id")UUID id){
+        return ResponseEntity.status(HttpStatus.OK).body(buyService.listOnePurchase(id));
+    }
+
+
 }
