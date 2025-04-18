@@ -5,6 +5,7 @@ import com.example.automation_for_purchasing_tickets.dtos.BuyRecord;
 import com.example.automation_for_purchasing_tickets.models.BuyModel;
 import com.example.automation_for_purchasing_tickets.services.BuyService;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +44,13 @@ public class BuyController {
         return ResponseEntity.status(HttpStatus.OK).body(buyService.listOnePurchase(id));
     }
 
+    @PutMapping("/updatePurchase/{id}")
+    public ResponseEntity<Object> updatePurchase(@PathVariable(value = "id")UUID id, @Valid @RequestBody BuyRecord buyRecord){
+        var purchase = new BuyModel();
+        BeanUtils.copyProperties(buyRecord, purchase);
 
+        buyService.updatePurchase(id, purchase);
+
+        return ResponseEntity.status(HttpStatus.OK).body("register purchasing updated with successfully");
+    }
 }
